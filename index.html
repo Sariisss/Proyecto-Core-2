@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decisiones del Corazón</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header__brand">
+          <span class="header__mark" aria-hidden="true">❤</span>
+          <div>
+            <h1 class="header__title">Decisiones del Corazón</h1>
+            <p class="header__subtitle">
+              Juego narrativo interactivo para aprender que el amor es un proceso: libre, consciente
+              y construido con alegría, templanza y amabilidad.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="panel" aria-labelledby="game-heading">
+          <div class="panel__top">
+            <h2 id="game-heading" class="panel__title">Elige tu historia</h2>
+            <div class="panel__actions">
+              <button class="btn btn--ghost" type="button" id="btn-restart" hidden>
+                Reiniciar
+              </button>
+            </div>
+          </div>
+
+          <p class="panel__hint" id="intro-hint">
+            Tus decisiones impactan la calidad de tus relaciones, tu crecimiento personal y la
+            construcción de un amor verdadero (consciente, no idealizado). No hay “opción perfecta”:
+            hay elecciones con consecuencias.
+          </p>
+
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+
+          <section class="screen screen--start" id="screen-start">
+            <div class="startCard">
+              <div class="startCard__badge">🎯 Objetivo</div>
+              <p class="startCard__text">
+                Aprender que <strong>amar es una decisión libre</strong>: no depender, sino elegir
+                el bien del otro con <strong>confianza</strong>, <strong>comunicación</strong> y
+                <strong>respeto</strong>.
+              </p>
+              <div class="startCard__meta">
+                <div class="metaItem">
+                  <div class="metaItem__k">Indicadores</div>
+                  <div class="metaItem__v">❤️ Amor · 🧠 Madurez · 🤝 Confianza · 😊 Bienestar</div>
+                </div>
+                <div class="metaItem">
+                  <div class="metaItem__k">Relaciones</div>
+                  <div class="metaItem__v">Padres e hijos · Parejas · Amigos</div>
+                </div>
+              </div>
+              <button class="btn btn--primary btn--wide" type="button" id="btn-start">
+                Comenzar
+              </button>
+              <p class="smallNote">
+                Nota: después de decisiones importantes verás feedback educativo para reflexionar.
+              </p>
+            </div>
+          </section>
+
+          <section class="screen" id="screen-game" hidden>
+            <aside class="hud" aria-label="Indicadores">
+              <div class="hud__top">
+                <div class="stage">
+                  <span class="stage__label">Etapa</span>
+                  <span class="stage__value" id="stage-name">—</span>
+                </div>
+                <div class="stage">
+                  <span class="stage__label">Escena</span>
+                  <span class="stage__value" id="scene-count">—</span>
+                </div>
+              </div>
+
+              <div class="meters">
+                <div class="meter">
+                  <div class="meter__row">
+                    <span class="meter__name">❤️ Amor</span>
+                    <span class="meter__value" id="stat-love">0</span>
+                  </div>
+                  <div class="bar" aria-hidden="true">
+                    <div class="bar__fill bar__fill--love" id="bar-love"></div>
+                  </div>
+                </div>
+                <div class="meter">
+                  <div class="meter__row">
+                    <span class="meter__name">🧠 Madurez</span>
+                    <span class="meter__value" id="stat-maturity">0</span>
+                  </div>
+                  <div class="bar" aria-hidden="true">
+                    <div class="bar__fill bar__fill--maturity" id="bar-maturity"></div>
+                  </div>
+                </div>
+                <div class="meter">
+                  <div class="meter__row">
+                    <span class="meter__name">🤝 Confianza</span>
+                    <span class="meter__value" id="stat-trust">0</span>
+                  </div>
+                  <div class="bar" aria-hidden="true">
+                    <div class="bar__fill bar__fill--trust" id="bar-trust"></div>
+                  </div>
+                </div>
+                <div class="meter">
+                  <div class="meter__row">
+                    <span class="meter__name">😊 Bienestar</span>
+                    <span class="meter__value" id="stat-wellbeing">0</span>
+                  </div>
+                  <div class="bar" aria-hidden="true">
+                    <div class="bar__fill bar__fill--wellbeing" id="bar-wellbeing"></div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <article class="scene">
+              <div class="scene__head">
+                <span class="scene__tag" id="scene-context">—</span>
+                <h3 class="scene__title" id="scene-title">—</h3>
+              </div>
+
+              <p class="scene__text" id="scene-text">—</p>
+              <div class="choices" id="choices" role="group" aria-label="Decisiones"></div>
+
+              <div class="feedback" id="feedback" hidden>
+                <div class="feedback__title">📘 Feedback educativo</div>
+                <p class="feedback__text" id="feedback-text"></p>
+                <div class="feedback__actions">
+                  <button class="btn btn--primary" type="button" id="btn-continue">
+                    Continuar
+                  </button>
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <section class="screen" id="screen-end" hidden>
+            <article class="endCard">
+              <div class="endCard__top">
+                <div class="endCard__badge" id="ending-badge">—</div>
+                <h3 class="endCard__title" id="ending-title">—</h3>
+                <p class="endCard__text" id="ending-text">—</p>
+              </div>
+
+              <div class="endGrid">
+                <section class="endPanel" aria-labelledby="analysis-heading">
+                  <h4 class="endPanel__title" id="analysis-heading">Análisis de tus decisiones</h4>
+                  <ul class="analysis" id="analysis-list"></ul>
+                </section>
+
+                <section class="endPanel" aria-labelledby="tips-heading">
+                  <h4 class="endPanel__title" id="tips-heading">Consejos personalizados</h4>
+                  <ul class="analysis" id="tips-list"></ul>
+                </section>
+              </div>
+
+              <div class="endCard__actions">
+                <button class="btn btn--primary" type="button" id="btn-play-again">
+                  Jugar de nuevo
+                </button>
+              </div>
+            </article>
+          </section>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Hecho con HTML, CSS y JavaScript puro · Paleta: alegría <span class="sw sw--joy"></span>,
+          amor <span class="sw sw--love"></span>, equilibrio <span class="sw sw--balance"></span>,
+          confianza <span class="sw sw--trust"></span>, claridad
+          <span class="sw sw--white"></span>.
+        </p>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
