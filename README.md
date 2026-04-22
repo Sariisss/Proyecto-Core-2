@@ -1,5 +1,6 @@
 # Decisiones del Corazón
 https://sariisss.github.io/Proyecto-Core-2/
+
 Juego web educativo (18–25 años) tipo “elige tu historia” para concientizar sobre el amor como **proceso** (no solo emoción), la **libertad dentro del amor** y la construcción de **relaciones sólidas** (confianza, comunicación y respeto), promoviendo virtudes como:
 
 - Alegría
